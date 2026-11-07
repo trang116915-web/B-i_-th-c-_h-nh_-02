@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct {
+    char hoten[30];
+    int masv;
+    float d1, d2, d3;
+}Data;
+int maid() {
+    printf("Nhap so luong sinh vien: ");
+    scanf("%d", &n);
+    Data *ds =(Data*) malloc(n * sizeof(Data));
+    if(ds == NULL) {
+        printf("Khong du bo nho!\n");
+        return 1;
+    }
+    for(int i = 0; i < n; i++) {
+       printf("\nNhap ma sv: ");
+       scanf("%d", &ds[i].masv);
+       printf("Nhap ho ten: ");
+       scanf("%s", ds[i].hoten);
+       printf("Nhap diem 1, 2, 3: ");
+       scanf("%f%f%f", &ds[i].d1, &ds[i].d2, %ds[i].d3);
+    }
+    printf("\nDANH SACH SINH ViEN\n");
+    for(int i = 0; i < n; i++) {
+       printf("%s - %d - %.2f - %.2f - %.2f\n", ds[i].hoten, ds[i].masv, ds[i].d1, ds[i].d2, ds[i].d3);
+    }
+    free(ds);
+    return 0;
+}
