@@ -34,27 +34,27 @@ void insert_Head(LList *L, Data x)
     if(emptyList(*L)) {
         L->pHead = pp;
         L->pTail = pp;
-    {
+    }
     else {
         pp->link = L->pHead;
         L->pHead = pp;
     }
     L->spt++;
 }
-void insert_Tail(LList *L, Data x)
-{
-    Node *pp;
-    pp = (Node*) malloc(sizeof(Node));
-    if(pp == NULL) return;
-    pp->infor = x;
-    pp->link = Null;
+void insert_Tail(LList*L,Data x)
+ {
+ 	Node *pp;
+ 	pp = (Node*) malloc(sizeof(Node));
+ 	if(pp == NULL) return;
+ 	pp->infor = x;
+ 	pp->link =NULL;
     if(emptyList(*L)) {
         L->pHead = pp;
         L->pTail = pp;
-    {
+    }
     else {
         L->pTail->link = pp;
-        L->pTail = p;
+        L->pTail = pp;
     }
     L->spt++;
 }
@@ -69,7 +69,7 @@ void insert_After(LList *L, int ma, Data x)
         return;
     }
     Node *q;
-    q = (Node*) malloc(sizaof(Node));
+    q = (Node*) malloc(sizeof(Node));
     if(q == NULL) return;
     q->infor = x;
     q->link = pp->link;
@@ -78,10 +78,44 @@ void insert_After(LList *L, int ma, Data x)
         L->pTail = q;
     L->spt++;
 }
+void delete_Node(LList *L, int ma)
+{
+	if(emptyList(*L)) return;
+	Node *pp = L->pHead;
+	Node *q = NULL;
+	while(pp != NULL && pp->infor.masv != ma) {
+		q = pp;
+		pp = pp->link;
+	}
+	if(pp == NULL) {
+		printf("Khong tim thay sinh vien can xoa\n");
+		return;
+	}
+	if(pp == L->pHead) {
+		L->pHead = pp->link;
+		if(L->pHead == NULL) L->pTail = NULL;
+	} else {
+		q->link = pp->link;
+		if(pp == L->pTail) L->pTail = q;
+	}
+	free(pp);
+	L->spt--;
+}
+void freeList(LList *L)
+{
+	Node *pp;
+	while(L->pHead != NULL) {
+		pp = L->pHead;
+		L->pHead = L->pHead->link;
+		free(pp);
+	}
+	L->pTail = NULL;
+	L->spt = 0;
+}
 void nhap(Data *x)
 {
     printf("Nhap ma sv: ");
-    scanf("%d", &(x-.masv));
+    scanf("%d", &(x->masv));
     if(x->masv > 0) {
         printf("Nhap ho ten: ");
         scanf("%s", x->hoten);
@@ -100,7 +134,7 @@ void in(Data x)
 void processList(LList L)
 {
     Node *pp = L.pHead;
-    while(pp =! Null) {
+    while(pp != NULL) {
         in(pp->infor);
         pp = pp->link;
     }
@@ -145,7 +179,7 @@ int main()
            case 4: 
                printf("Nhap ma sv can xoa: ");
                scanf("%d", &ma);
-               deleta_Node(&L, ma);
+               delete_Node(&L, ma);
                break;
            case 9 :
                processList(L);
