@@ -35,7 +35,7 @@ void insert_Head(LList *L, Data x)
         L->pHead = pp;
         L->pTail = pp;
     }
-    else {
+	  else {
         pp->link = L->pHead;
         L->pHead = pp;
     }
@@ -47,7 +47,7 @@ void insert_Tail(LList*L,Data x)
  	pp = (Node*) malloc(sizeof(Node));
  	if(pp == NULL) return;
  	pp->infor = x;
- 	pp->link =NULL;
+ 	pp->link = NULL;
     if(emptyList(*L)) {
         L->pHead = pp;
         L->pTail = pp;
