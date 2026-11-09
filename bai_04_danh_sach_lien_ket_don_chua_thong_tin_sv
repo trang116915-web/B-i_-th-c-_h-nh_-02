@@ -13,12 +13,12 @@ typedef struct {
     Node *pHead;
     Node *pTail;
     int spt;
-}LList
+}LList;
 void initList(LList *L)
 {
     L->pHead = NULL;
     L->pTail = NULL;
-    L->spt = o;
+    L->spt = 0;
 }
 int emptyList(LList L)
 {
@@ -37,7 +37,7 @@ void insert_Head(LList *L, Data x)
     {
     else {
         pp->link = L->pHead;
-        L->pHead == pp;
+        L->pHead = pp;
     }
     L->spt++;
 }
@@ -54,7 +54,7 @@ void insert_Tail(LList *L, Data x)
     {
     else {
         L->pTail->link = pp;
-        L->pTail == p;
+        L->pTail = p;
     }
     L->spt++;
 }
@@ -136,7 +136,7 @@ int main()
                    insert_Tail(&L, x);
                break;
            case 3:
-               pritnf("Nhap ma sv muon them sau: ");
+               printf("Nhap ma sv muon them sau: ");
                scanf("%d", &ma);
                nhap(&x);
                if(x.masv > 0)
