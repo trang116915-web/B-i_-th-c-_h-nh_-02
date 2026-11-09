@@ -1,14 +1,14 @@
 #include <stdio.h>
-#include <stdlib.h>
 typedef struct {
     char hoten[30];
     int masv;
     float d1, d2, d3;
-}Data;
+}SinhVien;
 int maid() {
+    int n;
     printf("Nhap so luong sinh vien: ");
     scanf("%d", &n);
-    Data *ds =(Data*) malloc(n * sizeof(Data));
+    struct SV ds =(struct SV*) malloc(n * sizeof(struct SV));
     if(ds == NULL) {
         printf("Khong du bo nho!\n");
         return 1;
